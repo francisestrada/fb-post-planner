@@ -1,0 +1,30 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#	modified:   static/js/app.js
+#	modified:   templates/main.html
+#
+# Changes not staged for commit:
+#	modified:   app.yaml
+#	modified:   main.py
+#	modified:   static/css/bootstrap.css
+#	modified:   static/js/app.js
+#	modified:   templates/main.html
+#
+# Untracked files:
+#	.DS_Store
+#	main.pyc
+#	static/.DS_Store
+#	static/css/.DS_Store
+#	static/fonts/.DS_Store
+#	static/img/.DS_Store
+#	static/img/placeholders/.DS_Store
+#	static/img/placeholders/stretch/.DS_Store
+#	static/js/.DS_Store
+#	static/js/vendors/.DS_Store
+#	templates/.DS_Store
+#	templates/view.html
+#
+
