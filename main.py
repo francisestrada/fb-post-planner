@@ -1,11 +1,12 @@
 import webapp2
- import logging
- from google.appengine.api import urlfetch
-+import json
+import logging
+from google.appengine.api import urlfetch
+import json
  
- FACEBOOK_APP_ID = "839210319436433"
- FACEBOOK_APP_SECRET = "cbeeee3e0e9594e802d44a1016f23569"
- @@ -41,9 +42,15 @@ def post(self):
+FACEBOOK_APP_ID = "365075190309550"
+FACEBOOK_APP_SECRET = "fc53e91466b4fe1ec0fba74b10d6ee30"
+@@-41,9 +42,15 
+@@def post(self):
                  };
          form_data = urllib.urlencode(data)
          url = "https://graph.facebook.com/v2.1/me/feed"
