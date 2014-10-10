@@ -1,0 +1,38 @@
+	<div id = "sites">
+				<ul>
+					<li><a href="https://www.facebook.com/fkestrada29"><img src="http://www.vanderbilt.edu/recreationandwellnesscenter/wellness/wp-content/uploads/Cracked-Facebook-Logo.png" width="42" length= "42"></a></li>
+					<li><a href="http://www.codecademy.com/francisestrada"><img src="http://www.educationalappstore.com/images/upload/9250-logo-9250-logo-mzl.bmszoffb.png" width="42" length= "42"></a></li>
+					<li><a href="https://github.com/francisestrada"><img src="http://cdns2.freepik.com/free-photo/github-logo_318-10832.jpg" length = "42" width="42"></a></li>
+				</ul>
+				</div>
+
+					<link href="/stylesheets/website.css" rel="stylesheet" type="text/css" media="screen">
+
+
+
+
+<center>
+ {% for greeting in greetings %}
+      {% if greeting.author %}
+        <b>{{ greeting.author.nickname() }}</b> wrote:
+      {% else %}
+       An anonymous person wrote:
+      {% endif %}
+      <blockquote>{{ greeting.content }}</blockquote>
+    {% endfor %}
+
+    <form action="/sign?guestbook_name={{ guestbook_name }}" method="post">
+      <div><textarea name="content" rows="3" cols="60"></textarea></div>
+      <div><input type="submit" value="Sign Guestbook"></div>
+    </form>
+
+    <hr>
+
+    <form>Guestbook name:
+      <input value="{{ guestbook_name }}" name="guestbook_name">
+      <input type="submit" value="switch">
+    </form>
+
+    <a href="{{ url|safe }}">{{ url_linktext }}</a>
+    </center>
+					
