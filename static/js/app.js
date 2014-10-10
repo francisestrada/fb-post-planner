@@ -54,6 +54,7 @@ function initialize() {
 				};
 		$.get(url,data,function(response){
 					if(response.id){
+                        alert('POSTED!')
 						var msg = $("#post textarea").val("");
 					}else{
 						alert('An error occured. Try to reload the page and try again.')
