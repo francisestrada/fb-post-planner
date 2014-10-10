@@ -21,6 +21,10 @@ body {
    background-size: 100%;
 
 } 
+
+#datetimepicker{
+ width: 30%
+}
 .wew{
     margin: 0;
     margin-left: 700;

@@ -1,93 +1,115 @@
 window.fbAsyncInit = function() {
-	FB.init({
-	  appId      : '839210319436433',
-	  xfbml      : true,
-	  version    : 'v2.1'
-	});
-	initialize();
+    FB.init({
+      appId      : '839210319436433',
+      xfbml      : true,
+      version    : 'v2.0',
+      cookie     : true
+    });
+    initialize();
 };
 (function(d, s, id){
-	 var js, fjs = d.getElementsByTagName(s)[0];
-	 if (d.getElementById(id)) {return;}
-	 js = d.createElement(s); js.id = id;
-	 js.src = "//connect.facebook.net/en_US/sdk.js";
-	 fjs.parentNode.insertBefore(js, fjs);
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-
+    var user;
 
 function initialize() {
-	var user;
-	var baseUrl = "https://graph.facebook.com/v2.1/";
-	getLoginStatus();
-    $("#login-fb").click(function(){
-    	getLoginStatus(login);
+
+
+    var baseUrl = "https://graph.facebook.com/v2.1/";
+    getLoginStatus();
+    $("#fb-login").click(function(){
+        getLoginStatus(login);
     })
-    $("#logout-fb").click(logout);
-    $("#post").submit(function(){
-    	if(user){
-    		var msg = $("#post textarea").val();
-    		postToFB(msg);
-    		return false;
-    	}else{
-    		alert("Please Login to post");
-    		return false;
-    	}
+    $("#fb-logout").click(logout);
+    /*
+    $("#post-form").submit(function(){
+        if(user){
+            var msg = $("#post-form textarea").val();
+            postToFB(msg);
+            return false;
+        }else{
+            alert("Please Login to post");
+            return false;
+        }
+    });
+
+*/
+    $("#post-form [name='date_to_post']").keypress(function(ev){
+        ev.preventDefault();
+    });
+
+    $("#post-form").submit(function(){
+        $("#post-form [name='access_token']").val(user.accessToken);
+        $("#post-form [name='fbID']").val(user.userID);
+        var date= new Date($("#post-form [name='date_to_post']").val());
+        if(date<new Date()){
+            alert('Invalid Date');
+            return false;
+        }
     });
 
     function getLoginStatus(callback){
-    	FB.getLoginStatus(function(response){
-    		if(response.status=="connected"){
-    			getFBresponse(response);
-    			toggleLogin();
-    		}else if(typeof callback === 'function' && callback()){
-    			callback(response);
-    		}
-    	});
+        FB.getLoginStatus(function(response){
+            if(response.status=="connected"){
+                getFBresponse(response);
+                toggleLogin();
+            }else if(typeof callback === 'function' && callback()){
+                callback(response);
+            }
+        });
     }
-    function postToFB(message){
-    	var url = baseUrl + user.userID + "/feed/";
-    	var data = {
-					method: "post",
-					message: message,
-					access_token: user.accessToken
-				};
-		$.get(url,data,function(response){
-					if(response.id){
-                        alert('POSTED!')
-						var msg = $("#post textarea").val("");
-					}else{
-						alert('An error occured. Try to reload the page and try again.')
-					}
-				});	
+    /*
+    function postToFB(msg){
+        var url = baseUrl + user.userID + "/feed/";
+        var data = {
+                    method: "post",
+                    message: msg,
+                    access_token: user.accessToken
+                };
+        $.get(url,data,function(response){
+                    if(response.id){
+                        alert('Post Successful');
+                        var msg = $("#post-form textarea").val("");
+                    }else{
+                        alert('An error occured. Try to reload the page and try again.')
+                    }
+                }); 
     }
+    */
     function getFBresponse(response){
-    	user=response.authResponse;
+        user=response.authResponse;
+        if(user){
+            $("#list").attr("href","/list/"+user.userID);
+        }else{
+            alert("Please Login");
+        }
+        
     }
     function login(){
-    	FB.login(function(response){
-    		if(response.authResponse){
-    			getFBresponse(response);
-    			toggleLogin();
-    		}
-    	}, {scope: 'publish_actions',return_scopes:true});
+        FB.login(function(response){
+            if(response.authResponse){
+                getFBresponse(response);
+                toggleLogin();
+            }
+        }, {scope: 'publish_actions',return_scopes:true});
     }
     function logout(){
-    	FB.logout(function(){
-    		toggleLogin();
-    		user=null;
-    	});
-	}
+        FB.logout(function(){
+            toggleLogin();
+            user=null;
+        });
+    }
 
     function toggleLogin(){
-		$("#login-fb,#logout-fb").toggle();
+        $("#fb-login,#fb-logout").toggle();
     }
 }
 
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=839210319436433&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
+$(function () {
+    $('#datetimepicker').datetimepicker({ startDate: new Date() });
+});
