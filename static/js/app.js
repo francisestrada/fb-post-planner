@@ -2,7 +2,7 @@ window.fbAsyncInit = function() {
     FB.init({
       appId      : '839210319436433',
       xfbml      : true,
-      version    : 'v2.0',
+      version    : 'v2.1',
       cookie     : true
     });
     initialize();
@@ -24,6 +24,9 @@ function initialize() {
     getLoginStatus();
     $("#fb-login").click(function(){
         getLoginStatus(login);
+    })
+    $("#post-now").click(function(){
+        $("#post-form").attr("action","/post-now").submit();
     })
     $("#fb-logout").click(logout);
     /*

@@ -1,0 +1,6 @@
+
+cron:
+- description: post scheduled posts
+  url: /task/post
+  schedule: every 1 mins
+  timezone: Asia/Manila

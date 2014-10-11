@@ -15,7 +15,7 @@ html {
 body {
   margin: 0;
    margin-left: 300;
-   margin-right: 300;
+   margin-right: 200;
    background-image:url(http://www.pptback.com/uploads/abstract-white-cool-backgrounds-powerpoint.jpg);
    background-repeat: no-repeat;
    background-size: 100%;
@@ -1431,17 +1431,17 @@ pre code {
 }
 @media (min-width: 768px) {
   .container {
-    width: 750px;
+    width: 800px;
   }
 }
 @media (min-width: 992px) {
   .container {
-    width: 970px;
+    width: 800px;
   }
 }
 @media (min-width: 1200px) {
   .container {
-    width: 1170px;
+    width: 1200px;
   }
 }
 .container-fluid {
@@ -6381,4 +6381,69 @@ button.close {
 }
 .panel-primary .panel-title {
   color: #fff;
+}
+#datetimepicker{
+  width: 40%
+}
+.mybtn{
+  padding: 5px 5px 5px 5px;
+  position: relative;
+  float: right;
+}
+.button{
+  padding-left:20px;
+}
+.fbpost{
+  padding: 20px 20px 20px 20px;
+}
+.input-group{
+  padding-left:20px;
+  padding-bottom:20px;}
+
+.blue{
+  background-color:black;
+  opacity:.2;
+  border:5px solid 4CA2DF;
+}
+.panel-default > .panel-heading .badge {
+color: black;
+background-color: #4797CC;
+}
+
+html {
+  font-size: 10px;
+
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+}
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  color: #2a6496;
+  text-decoration: underline;
+}
+a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+figure {
+  margin: 0;
 }
